@@ -23,7 +23,7 @@ namespace vim.music
             .WriteTo.Console()
             .CreateLogger();
 
-            Log.Information("----- BENEVIENDO AO VIMMÚSICA -----");
+            Log.Information("----- BENEVIENDO AO VAI PRA PUTA QUE PARIU DESGRAÇADOQWN EJIKW H	QUJioEJNQWBJIKOLEN1Q23EJ2n13 '1QEJ16WUIEJNUI16N7 UIO16NJI 1NUKOL FODA-SE ESSE PROJETO DE MERDA EU VOU ME MATAR PREFIRO MESMO FOSASE ESSE MERDA DESSE VIDA DO CARALHO -----");
 
             jsonstructs.Configuration config;
             var configPath = Path.Combine(RunningPath, "config.json");
@@ -35,12 +35,6 @@ namespace vim.music
             }
             else config = JsonConvert.DeserializeObject<jsonstructs.Configuration>(File.ReadAllText(configPath)) ?? new jsonstructs.Configuration();
             Log.Information("Configuração carregada...");
-
-            if (string.IsNullOrEmpty(config.Token))
-            {
-                Log.Fatal("Nenhum token foi providenciado. Encerrado...");
-                Environment.Exit(1);
-            }
 
             var services = new ServiceCollection()
             .AddSingleton(config)

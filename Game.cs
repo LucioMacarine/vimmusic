@@ -17,13 +17,13 @@ namespace vim.music
 
         public static void SaveGame(Game game)
         {
-            if (Directory.Exists(Path.Combine(RunningPath, "saves")))
+            if (!Directory.Exists(Path.Combine(RunningPath, "saves")))
             {
                 Log.Warning("Diretório de saves não existente, criando...");
                 Directory.CreateDirectory(Path.Combine(RunningPath, "saves"));
             }
-            var json = JsonConvert.SerializeObject(game);
-            File.WriteAllText(Path.Combine(RunningPath, "saves", $"{DateTime.Now.ToShortDateString()}-{DateTime.Now.ToShortTimeString()}-GAME.json"), json);
+            var json = JsonConvert.SerializeObject(game, Formatting.Indented);
+            File.WriteAllText(Path.Combine(RunningPath, "saves", $"{DateTime.Now.ToString("dd-MM-yyyy=HH:mm:ss")}=GAME.json"), json);
         }
 
         public static Game ProgressGame(Game game)

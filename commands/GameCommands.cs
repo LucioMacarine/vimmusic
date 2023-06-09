@@ -290,7 +290,7 @@ namespace vim.music.commands
 
             var field2 = new EmbedFieldBuilder().WithIsInline(true).WithName("**Rounds restantes:**").WithValue("```" + roundCount + "```");
 
-            var embed = new EmbedBuilder().WithTitle("Iniciando novo bloco de partidas").WithFields(new EmbedFieldBuilder[] { field2 }).WithColor(Color.Blue).Build();
+            var embed = new EmbedBuilder().WithTitle("Iniciando novo bloco de partidas").WithFields(new EmbedFieldBuilder[] { field2 }).WithColor(Color.Blue).WithDescription("Seu jogo será salvo automaticamente.\nPara confirmar o salvamento por favor cheque a pasta ./saves").Build();
 
             var matches = new EmbedBuilder().WithTitle("Partidas para a fase:").WithDescription($"```{GameMgMt.TextReport(GameMgMt.CurrentlyPlaying)}```").WithColor(Color.Blue).Build();
 
@@ -305,7 +305,7 @@ namespace vim.music.commands
         [SlashCommand("load", "Carrega um jogo de um arquivo salvo")]
         public async Task LoadGame([Autocomplete(typeof(SaveGamesAutoCompleteHandler))] string file)
         {
-            var json = await File.ReadAllTextAsync(file);
+            var json = await File.ReadAllTextAsync(Path.Combine(RunningPath, "saves", file));
             var game = JsonConvert.DeserializeObject<jsonstructs.Game>(json);
 
             GameMgMt.CurrentlyPlaying = game;
