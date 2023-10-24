@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using Discord.Interactions;
 using Discord.WebSocket;
 using Discord;
@@ -19,11 +20,12 @@ namespace vim.music
         public static async Task MainAsync(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-            // .MinimumLevel.Verbose()
+            .MinimumLevel.Verbose()
             .WriteTo.Console()
             .CreateLogger();
 
-            Log.Information("----- BENEVIENDO AO VAI PRA PUTA QUE PARIU DESGRAÇADOQWN EJIKW H	QUJioEJNQWBJIKOLEN1Q23EJ2n13 '1QEJ16WUIEJNUI16N7 UIO16NJI 1NUKOL FODA-SE ESSE PROJETO DE MERDA EU VOU ME MATAR PREFIRO MESMO FOSASE ESSE MERDA DESSE VIDA DO CARALHO -----");
+            Log.Information("----- BENEVIENDO AO VIM MÚSICA -----");
+            Log.Information("----- Agora. Isso, é épico -----");
 
             jsonstructs.Configuration config;
             var configPath = Path.Combine(RunningPath, "config.json");
@@ -57,7 +59,8 @@ namespace vim.music
             client.Ready += async () =>
             {
                 Log.Information("Registrando comandos");
-                await interactions.RegisterCommandsToGuildAsync((ulong)1104118276956618874, true);
+                // await interactions.RegisterCommandsToGuildAsync((ulong)1104118276956618874, true);
+                await interactions.RegisterCommandsGloballyAsync(true);
             };
 
             client.InteractionCreated += async (interaction) =>
